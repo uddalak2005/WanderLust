@@ -1,0 +1,135 @@
+[
+  {
+    "title": "Cozy Beachfront Villa",
+    "description": "A stunning villa with a sea view and private beach access.",
+    "image": "https://source.unsplash.com/400x300/?beach,house",
+    "price": 250,
+    "location": "Goa, India"
+  },
+  {
+    "title": "Luxury 5-Star Hotel Room",
+    "description": "A high-end hotel room with a skyline view and all amenities.",
+    "image": "https://source.unsplash.com/400x300/?hotel,luxury",
+    "price": 180,
+    "location": "Mumbai, India"
+  },
+  {
+    "title": "Mountain View Cabin",
+    "description": "A peaceful wooden cabin in the mountains, ideal for relaxation.",
+    "image": "https://source.unsplash.com/400x300/?cabin,mountains",
+    "price": 120,
+    "location": "Manali, India"
+  },
+  {
+    "title": "Modern City Apartment",
+    "description": "A stylish and fully-furnished apartment in the heart of the city.",
+    "image": "https://source.unsplash.com/400x300/?apartment,city",
+    "price": 90,
+    "location": "Bangalore, India"
+  },
+  {
+    "title": "Riverside Cottage",
+    "description": "A charming cottage with a beautiful river view and fireplace.",
+    "image": "https://source.unsplash.com/400x300/?cottage,river",
+    "price": 150,
+    "location": "Rishikesh, India"
+  },
+  {
+    "title": "Desert Camp Experience",
+    "description": "A luxury tent with a bonfire and cultural performances.",
+    "image": "https://source.unsplash.com/400x300/?desert,camp",
+    "price": 100,
+    "location": "Jaisalmer, India"
+  },
+  {
+    "title": "Treehouse Stay",
+    "description": "A unique treehouse surrounded by lush greenery and nature.",
+    "image": "https://source.unsplash.com/400x300/?treehouse,nature",
+    "price": 130,
+    "location": "Meghalaya, India"
+  },
+  {
+    "title": "Seaside Bungalow",
+    "description": "A beachfront bungalow with a patio and breathtaking sunsets.",
+    "image": "https://source.unsplash.com/400x300/?bungalow,beach",
+    "price": 210,
+    "location": "Kerala, India"
+  },
+  {
+    "title": "Lakeview Resort",
+    "description": "A luxury resort with infinity pool overlooking a scenic lake.",
+    "image": "https://source.unsplash.com/400x300/?resort,lake",
+    "price": 200,
+    "location": "Udaipur, India"
+  },
+  {
+    "title": "Heritage Haveli",
+    "description": "Stay in a beautifully restored heritage haveli with traditional decor.",
+    "image": "https://source.unsplash.com/400x300/?heritage,architecture",
+    "price": 190,
+    "location": "Jaipur, India"
+  },
+  {
+    "title": "Snow Lodge",
+    "description": "A cozy lodge in the snowy hills, perfect for winter vacations.",
+    "image": "https://source.unsplash.com/400x300/?snow,lodge",
+    "price": 160,
+    "location": "Shimla, India"
+  },
+  {
+    "title": "Luxury Penthouse",
+    "description": "A high-end penthouse with a rooftop pool and city skyline view.",
+    "image": "https://source.unsplash.com/400x300/?penthouse,luxury",
+    "price": 300,
+    "location": "New York, USA"
+  },
+  {
+    "title": "Japanese Ryokan",
+    "description": "Traditional Japanese inn with tatami floors and onsen.",
+    "image": "https://source.unsplash.com/400x300/?ryokan,japan",
+    "price": 220,
+    "location": "Kyoto, Japan"
+  },
+  {
+    "title": "Beach Hut Stay",
+    "description": "A simple yet relaxing hut right on the beach.",
+    "image": "https://source.unsplash.com/400x300/?hut,beach",
+    "price": 80,
+    "location": "Bali, Indonesia"
+  },
+  {
+    "title": "Swiss Chalet",
+    "description": "An alpine-style wooden chalet with amazing mountain views.",
+    "image": "https://source.unsplash.com/400x300/?chalet,switzerland",
+    "price": 270,
+    "location": "Zermatt, Switzerland"
+  },
+  {
+    "title": "Tropical Island Villa",
+    "description": "A luxurious villa with a private pool in a tropical paradise.",
+    "image": "https://source.unsplash.com/400x300/?villa,tropical",
+    "price": 500,
+    "location": "Maldives"
+  },
+  {
+    "title": "Historic Castle Stay",
+    "description": "Live like royalty in a real castle with elegant rooms.",
+    "image": "https://source.unsplash.com/400x300/?castle,medieval",
+    "price": 450,
+    "location": "Edinburgh, Scotland"
+  },
+  {
+    "title": "Eco-Friendly Farmhouse",
+    "description": "A peaceful stay on an organic farm with fresh food.",
+    "image": "https://source.unsplash.com/400x300/?farmhouse,countryside",
+    "price": 140,
+    "location": "Coorg, India"
+  },
+  {
+    "title": "Ski Resort Apartment",
+    "description": "Perfect ski-in, ski-out accommodation for winter sports lovers.",
+    "image": "https://source.unsplash.com/400x300/?ski,resort",
+    "price": 180,
+    "location": "Aspen, USA"
+  }
+]
