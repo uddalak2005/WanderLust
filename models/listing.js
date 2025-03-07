@@ -6,7 +6,6 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const default_link = process.env.DEFAULT_IMAGE;
 
-console.log(default_link)
 
 const lisitngModel  = new mongoose.Schema({
     title : {
@@ -28,6 +27,10 @@ const lisitngModel  = new mongoose.Schema({
         required : true 
     },
     location : {
+        type : String,
+        required : true
+    },
+    country : {
         type : String,
         required : true
     }

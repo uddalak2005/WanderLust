@@ -1,0 +1,13 @@
+<%- layout("layouts/biolerplate.ejs") %>
+<body>
+    <h3>Add New Lisitng</h3>
+    <form method="POST" action="/listings">
+        <input type="text" name="title" placeholder="Title"><br>
+        <textarea name="description" id="" placeholder="Enter Description"></textarea><br>
+        <input type="number" name="price" placeholder="Price"><br>
+        <input type="text" name="location" placeholder="Location"><br>
+        <input type="text" name="image" placeholder="Image URL"><br>
+        <input type="text" name="country" placeholder="Country"><br>
+        <button type="submit">Create Listing</button>
+    </form>
+</body>

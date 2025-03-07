@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanderlust</title>
-</head>
+<% layout("layouts/biolerplate.ejs") %>
 <body>
-    <h1>All Lisitngs</h1>
+
+    <h3>All Lisitngs</h3>
+    <form action="/listings/new" method="GET">
+        <button>Add new lisitng</button>
+    </form>
     <ul>
         <% items.forEach((item, index) => { %>
             <li><a href="/show/<%= item._id %>"><%= item.title %></a></li>
         <% }) %>
     </ul>
 </body>
-</html>

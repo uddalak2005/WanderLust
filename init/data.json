@@ -1,135 +1,162 @@
 [
   {
-    "title": "Cozy Beachfront Villa",
-    "description": "A stunning villa with a sea view and private beach access.",
-    "image": "https://source.unsplash.com/400x300/?beach,house",
-    "price": 250,
-    "location": "Goa, India"
-  },
-  {
-    "title": "Luxury 5-Star Hotel Room",
-    "description": "A high-end hotel room with a skyline view and all amenities.",
-    "image": "https://source.unsplash.com/400x300/?hotel,luxury",
-    "price": 180,
-    "location": "Mumbai, India"
-  },
-  {
-    "title": "Mountain View Cabin",
-    "description": "A peaceful wooden cabin in the mountains, ideal for relaxation.",
-    "image": "https://source.unsplash.com/400x300/?cabin,mountains",
+    "title": "Cozy Cabin in the Woods",
+    "description": "A peaceful retreat surrounded by nature.",
+    "image": "https://source.unsplash.com/800x600/?cabin",
     "price": 120,
-    "location": "Manali, India"
+    "location": "Aspen, CO",
+    "country": "USA"
   },
   {
-    "title": "Modern City Apartment",
-    "description": "A stylish and fully-furnished apartment in the heart of the city.",
-    "image": "https://source.unsplash.com/400x300/?apartment,city",
-    "price": 90,
-    "location": "Bangalore, India"
+    "title": "Luxury Beachfront Villa",
+    "description": "A stunning villa with ocean views and private pool.",
+    "image": "https://source.unsplash.com/800x600/?beach-villa",
+    "price": 450,
+    "location": "Malibu, CA",
+    "country": "USA"
   },
   {
-    "title": "Riverside Cottage",
-    "description": "A charming cottage with a beautiful river view and fireplace.",
-    "image": "https://source.unsplash.com/400x300/?cottage,river",
-    "price": 150,
-    "location": "Rishikesh, India"
-  },
-  {
-    "title": "Desert Camp Experience",
-    "description": "A luxury tent with a bonfire and cultural performances.",
-    "image": "https://source.unsplash.com/400x300/?desert,camp",
-    "price": 100,
-    "location": "Jaisalmer, India"
-  },
-  {
-    "title": "Treehouse Stay",
-    "description": "A unique treehouse surrounded by lush greenery and nature.",
-    "image": "https://source.unsplash.com/400x300/?treehouse,nature",
-    "price": 130,
-    "location": "Meghalaya, India"
-  },
-  {
-    "title": "Seaside Bungalow",
-    "description": "A beachfront bungalow with a patio and breathtaking sunsets.",
-    "image": "https://source.unsplash.com/400x300/?bungalow,beach",
-    "price": 210,
-    "location": "Kerala, India"
-  },
-  {
-    "title": "Lakeview Resort",
-    "description": "A luxury resort with infinity pool overlooking a scenic lake.",
-    "image": "https://source.unsplash.com/400x300/?resort,lake",
+    "title": "Modern Apartment in Downtown",
+    "description": "A stylish and convenient apartment in the heart of the city.",
+    "image": "https://source.unsplash.com/800x600/?apartment",
     "price": 200,
-    "location": "Udaipur, India"
+    "location": "New York, NY",
+    "country": "USA"
   },
   {
-    "title": "Heritage Haveli",
-    "description": "Stay in a beautifully restored heritage haveli with traditional decor.",
-    "image": "https://source.unsplash.com/400x300/?heritage,architecture",
-    "price": 190,
-    "location": "Jaipur, India"
-  },
-  {
-    "title": "Snow Lodge",
-    "description": "A cozy lodge in the snowy hills, perfect for winter vacations.",
-    "image": "https://source.unsplash.com/400x300/?snow,lodge",
-    "price": 160,
-    "location": "Shimla, India"
-  },
-  {
-    "title": "Luxury Penthouse",
-    "description": "A high-end penthouse with a rooftop pool and city skyline view.",
-    "image": "https://source.unsplash.com/400x300/?penthouse,luxury",
+    "title": "Rustic Mountain Lodge",
+    "description": "An adventurous stay in the mountains with breathtaking views.",
+    "image": "https://source.unsplash.com/800x600/?mountain-lodge",
     "price": 300,
-    "location": "New York, USA"
+    "location": "Denver, CO",
+    "country": "USA"
   },
   {
-    "title": "Japanese Ryokan",
-    "description": "Traditional Japanese inn with tatami floors and onsen.",
-    "image": "https://source.unsplash.com/400x300/?ryokan,japan",
-    "price": 220,
-    "location": "Kyoto, Japan"
+    "title": "Charming Cottage by the Lake",
+    "description": "A romantic getaway with a lakeside view.",
+    "image": "https://source.unsplash.com/800x600/?cottage",
+    "price": 150,
+    "location": "Lake Tahoe, CA",
+    "country": "USA"
   },
   {
-    "title": "Beach Hut Stay",
-    "description": "A simple yet relaxing hut right on the beach.",
-    "image": "https://source.unsplash.com/400x300/?hut,beach",
-    "price": 80,
-    "location": "Bali, Indonesia"
-  },
-  {
-    "title": "Swiss Chalet",
-    "description": "An alpine-style wooden chalet with amazing mountain views.",
-    "image": "https://source.unsplash.com/400x300/?chalet,switzerland",
-    "price": 270,
-    "location": "Zermatt, Switzerland"
-  },
-  {
-    "title": "Tropical Island Villa",
-    "description": "A luxurious villa with a private pool in a tropical paradise.",
-    "image": "https://source.unsplash.com/400x300/?villa,tropical",
+    "title": "Penthouse with City View",
+    "description": "A luxurious penthouse with skyline views.",
+    "image": "https://source.unsplash.com/800x600/?penthouse",
     "price": 500,
-    "location": "Maldives"
+    "location": "Chicago, IL",
+    "country": "USA"
+  },
+  {
+    "title": "Treehouse Retreat",
+    "description": "A magical stay in a well-equipped treehouse.",
+    "image": "https://source.unsplash.com/800x600/?treehouse",
+    "price": 180,
+    "location": "Portland, OR",
+    "country": "USA"
+  },
+  {
+    "title": "Countryside Farmhouse",
+    "description": "A peaceful stay with farm animals and fresh air.",
+    "image": "https://source.unsplash.com/800x600/?farmhouse",
+    "price": 140,
+    "location": "Nashville, TN",
+    "country": "USA"
   },
   {
     "title": "Historic Castle Stay",
-    "description": "Live like royalty in a real castle with elegant rooms.",
-    "image": "https://source.unsplash.com/400x300/?castle,medieval",
-    "price": 450,
-    "location": "Edinburgh, Scotland"
+    "description": "Live like royalty in a medieval castle.",
+    "image": "https://source.unsplash.com/800x600/?castle",
+    "price": 600,
+    "location": "Edinburgh",
+    "country": "Scotland"
   },
   {
-    "title": "Eco-Friendly Farmhouse",
-    "description": "A peaceful stay on an organic farm with fresh food.",
-    "image": "https://source.unsplash.com/400x300/?farmhouse,countryside",
-    "price": 140,
-    "location": "Coorg, India"
+    "title": "Floating House on the River",
+    "description": "A unique stay in a floating house with stunning river views.",
+    "image": "https://source.unsplash.com/800x600/?houseboat",
+    "price": 250,
+    "location": "Amsterdam",
+    "country": "Netherlands"
   },
   {
-    "title": "Ski Resort Apartment",
-    "description": "Perfect ski-in, ski-out accommodation for winter sports lovers.",
-    "image": "https://source.unsplash.com/400x300/?ski,resort",
+    "title": "Desert Dome House",
+    "description": "An eco-friendly dome house in the middle of the desert.",
+    "image": "https://source.unsplash.com/800x600/?desert-house",
+    "price": 190,
+    "location": "Joshua Tree, CA",
+    "country": "USA"
+  },
+  {
+    "title": "Ski-In/Ski-Out Chalet",
+    "description": "Perfect for ski lovers with direct access to the slopes.",
+    "image": "https://source.unsplash.com/800x600/?chalet",
+    "price": 400,
+    "location": "Whistler",
+    "country": "Canada"
+  },
+  {
+    "title": "Japanese Ryokan with Onsen",
+    "description": "Traditional Japanese inn with a private hot spring.",
+    "image": "https://source.unsplash.com/800x600/?ryokan",
+    "price": 320,
+    "location": "Kyoto",
+    "country": "Japan"
+  },
+  {
+    "title": "Urban Loft with Rooftop Pool",
+    "description": "A trendy loft with great amenities in a vibrant neighborhood.",
+    "image": "https://source.unsplash.com/800x600/?loft",
+    "price": 220,
+    "location": "Berlin",
+    "country": "Germany"
+  },
+  {
+    "title": "Charming Houseboat",
+    "description": "Experience living on the water in a fully equipped houseboat.",
+    "image": "https://source.unsplash.com/800x600/?houseboat",
+    "price": 280,
+    "location": "Copenhagen",
+    "country": "Denmark"
+  },
+  {
+    "title": "Luxury Safari Lodge",
+    "description": "An exclusive stay in the middle of the African wilderness.",
+    "image": "https://source.unsplash.com/800x600/?safari-lodge",
+    "price": 700,
+    "location": "Serengeti",
+    "country": "Tanzania"
+  },
+  {
+    "title": "Cliffside Bungalow with Infinity Pool",
+    "description": "A private escape with stunning ocean views.",
+    "image": "https://source.unsplash.com/800x600/?bungalow",
+    "price": 500,
+    "location": "Bali",
+    "country": "Indonesia"
+  },
+  {
+    "title": "Secluded Jungle Treehouse",
+    "description": "Stay among the treetops in a beautifully designed jungle retreat.",
+    "image": "https://source.unsplash.com/800x600/?jungle-house",
+    "price": 350,
+    "location": "Costa Rica",
+    "country": "Costa Rica"
+  },
+  {
+    "title": "Quaint English Cottage",
+    "description": "A picture-perfect cottage with a charming garden.",
+    "image": "https://source.unsplash.com/800x600/?english-cottage",
     "price": 180,
-    "location": "Aspen, USA"
+    "location": "Cotswolds",
+    "country": "UK"
+  },
+  {
+    "title": "Cozy Igloo Experience",
+    "description": "Sleep under the Northern Lights in a warm, glass igloo.",
+    "image": "https://source.unsplash.com/800x600/?igloo",
+    "price": 450,
+    "location": "Lapland",
+    "country": "Finland"
   }
 ]
