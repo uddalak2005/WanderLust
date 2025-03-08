@@ -1,0 +1,12 @@
+<div class="card col">
+    <img src="<%= item.image.url %>" class="card-img-top" alt="..." style="height : 15rem;">
+    <div class="card-img-overlay"></div>
+    <div class="card-body">
+        <h5 class="card-title">
+            <b>
+                <%= item.title %>
+            </b>
+        </h5>
+        <p class="card-text">₹<%= item.price.toLocaleString("en-in") %> / night</p>
+    </div>
+</div>

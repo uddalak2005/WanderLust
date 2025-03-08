@@ -65,9 +65,19 @@ app.get("/listings/new", (req, res) => {
 
 //add new lisitng
 app.post("/listings", async (req, res) =>{
-    const {title, description, image, price, location, country } = req.body;
-    const item = new Listing({title, description, image, price, location, country});
-    await item.save();
+    const {title, description, image, price, country, location } = req.body;
+    const newListing = new Listing({
+        title, 
+        description, 
+        image: {
+            filename: "listing_image",
+            url: image
+        }, 
+        price, 
+        location,
+        country
+    });
+    await newListing.save();
     res.redirect("/listings");
 })
 
@@ -75,6 +85,7 @@ app.post("/listings", async (req, res) =>{
 app.delete("/listings/:_id", async(req, res) => {
     const {_id} = req.params;
     let deleted = await Listing.findByIdAndDelete(_id);
+
     console.log(deleted);
     res.redirect("/listings");
 })

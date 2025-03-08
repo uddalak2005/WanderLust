@@ -1,13 +1,14 @@
 <% layout("layouts/biolerplate.ejs") %>
-<body>
 
-    <h3>All Lisitngs</h3>
-    <form action="/listings/new" method="GET">
-        <button>Add new lisitng</button>
-    </form>
-    <ul>
-        <% items.forEach((item, index) => { %>
-            <li><a href="/show/<%= item._id %>"><%= item.title %></a></li>
-        <% }) %>
-    </ul>
+<body>
+    <div class="container">
+        <h3 class="my-3">All Listings</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mb-4">
+            <% items.forEach((item)=> { %>
+                <a href="/show/<%= item._id %>" style="text-decoration: none;">
+                    <%- include("../includes/card.ejs", { item: item }) %>
+                </a>
+            <% }) %>
+        </div>
+    </div>
 </body>
