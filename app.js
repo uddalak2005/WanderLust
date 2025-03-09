@@ -55,7 +55,7 @@ app.get("/listings" , async (req, res) => {
 app.get("/show/:_id", async(req, res) => {
     const {_id} = req.params;
     const item = await Listing.findById(_id);
-    res.render("listings/show.ejs", {item});
+    res.render("listings/show.ejs", {item : item});
 })
 
 //new listing form
@@ -78,6 +78,34 @@ app.post("/listings", async (req, res) =>{
         country
     });
     await newListing.save();
+    res.redirect("/listings");
+})
+
+//Edit lisitng
+app.get("/listings/:_id/edit", async(req, res) => {
+    const {_id} = req.params;
+    const item = await Listing.findById(_id);
+    res.render("listings/edit.ejs", {item : item});
+})
+
+
+//Update listing
+app.put("/listings/:_id/edit", async(req, res) => {
+    const{_id} = req.params;
+    const lisitng = {
+        title : req.body.title,
+        description : req.body.description,
+        image:{
+            filename : "filename",
+            url : req.body.image
+        },
+        price: req.body.price,
+        location: req.body.location,
+        country: req.body.country
+    };
+
+    await Listing.findByIdAndUpdate(_id, lisitng);
+
     res.redirect("/listings");
 })
 

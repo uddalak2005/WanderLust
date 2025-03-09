@@ -17,6 +17,26 @@ body{
     padding : 1rem;
 }
 
+.navbar-collapse {
+    background-color: #fff; /* Light background with slight transparency */
+    padding: 10px; /* Optional: Adds spacing */
+    width: 100vw; /* Optional: Makes the navbar take up the full width of the screen */   
+}
+
+@media (max-width: 768px) { /* Targets mobile screens */
+    .navbar-collapse {
+        background-color: #fff; /* Solid white background */
+        position: absolute; /* Allows the navbar to be positioned absolutely */
+        top: 5rem; /* Places the navbar below the top bar */
+        z-index: 1;
+        left :0rem;
+        padding: 20px;
+    }
+}
+
+
+
+
 .fa-compass{
     color : #fa424d;
     font-size : 2rem;
@@ -105,7 +125,64 @@ body{
 
 /*Add New Button*/
 
-.btn-add-new{
+.btn-add-new, .btn-save-new{
     background-color: #fa424d;
     color: white;
 }
+
+.btn-add-new:hover, .btn-save-new:hover{
+    background-color: #fe5061;
+    color: white;
+}
+
+/*To handle the two input boxes in a line in theadd new form*/
+
+.form-entry-country{
+    padding-right: 0;
+}
+.form-entry-price{
+    padding-left: 0;
+}
+@media (max-width: 768px) {
+    .form-entry-country{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .form-entry-price{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/*Show Route*/
+.show-img{
+    width: 100%;
+    height : 40vh;
+    border-radius: 1rem;
+    object-fit: cover !important;
+    aspect-ratio: 1/1;
+    object-position: center
+}
+
+.btn-edit{
+    background-color: #fa424d;
+    color: white;
+    width : 100px;
+}
+.btn-edit:hover{
+    background-color: #fe5061;
+    color: white;
+}
+
+.btn-delete{
+    background-color: #000000;
+    color: white;
+    width : 100px;
+}
+.btn-delete:hover{
+    background-color: #333333;
+    color: white;
+}
+
+
+
