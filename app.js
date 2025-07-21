@@ -6,31 +6,56 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const method_override = require('method-override');
 const engine = require("ejs-mate");
-
+const ExpressError = require("./utils/ExpressError.js");
+const wrapAsync = require("./utils/wrapAsync.js");
+const listingRouter = require("./routes/listing.js");
+const reviewsRouter = require("./routes/reviews.js");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const flash = require("express-flash");
 
 app.engine("ejs", engine);
-
 
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(method_override("_method"));
 
-app.set("view engiene", "ejs");
+app.set("view engine", "ejs");
 
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.json());
 
-app.use(express.urlencoded({extended : true}));
+app.use(express.urlencoded({ extended: true }));
 
+dotenv.config(path.join(__dirname, ".env"));
 
-dotenv.config(path.join(__dirname , ".env"));
+app.use(cookieParser(process.env.SIGNED_COOKIE));
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+    }
+}));
+
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+})
 
 const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 
 
-async function connectDB(){
+async function connectDB() {
     await mongoose.connect(MONGO_URL)
 }
 
@@ -43,81 +68,40 @@ connectDB().then(() => {
 //Home Route
 app.get("/", (req, res) => {
     res.render("listings/home.ejs");
-} ); 
+});
 
-//Index Route
-app.get("/listings" , async (req, res) => {
-    const items = await Listing.find({});
-    res.render("listings/index.ejs", {items});
-})
+//Listing router
+app.use("/listings", listingRouter);
+
+//Reviews router
+app.use("/listings/:_id/reviews", reviewsRouter);
 
 //Show Route
-app.get("/show/:_id", async(req, res) => {
-    const {_id} = req.params;
-    const item = await Listing.findById(_id);
-    res.render("listings/show.ejs", {item : item});
-})
+app.get("/show/:_id", wrapAsync(
+    async (req, res) => {
+        const { _id } = req.params;
+        const item = await Listing.findById(_id).populate("reviews");
+        if (!item) {
+            req.flash("error", "Listing not found");
+            res.redirect("/listings");
+        }
+        res.render("listings/show.ejs", { item: item });
+    }
+))
 
-//new listing form
-app.get("/listings/new", (req, res) => {
-    res.render("listings/new.ejs");
-})
 
-//add new lisitng
-app.post("/listings", async (req, res) =>{
-    const {title, description, image, price, country, location } = req.body;
-    const newListing = new Listing({
-        title, 
-        description, 
-        image: {
-            filename: "listing_image",
-            url: image
-        }, 
-        price, 
-        location,
-        country
-    });
-    await newListing.save();
-    res.redirect("/listings");
-})
+//For all routes that donot exist
+app.all("*", (req, res, next) => {
+    next(new ExpressError(404, "Page Not Found"));
+});
 
-//Edit lisitng
-app.get("/listings/:_id/edit", async(req, res) => {
-    const {_id} = req.params;
-    const item = await Listing.findById(_id);
-    res.render("listings/edit.ejs", {item : item});
+//Error Handling Middleware
+app.use((err, req, res, next) => {
+    const { status = 500, message = "Internal Server Error" } = err;
+    return res.status(status).render("error/error.ejs", { err });
 })
 
 
-//Update listing
-app.put("/listings/:_id/edit", async(req, res) => {
-    const{_id} = req.params;
-    const lisitng = {
-        title : req.body.title,
-        description : req.body.description,
-        image:{
-            filename : "filename",
-            url : req.body.image
-        },
-        price: req.body.price,
-        location: req.body.location,
-        country: req.body.country
-    };
-
-    await Listing.findByIdAndUpdate(_id, lisitng);
-
-    res.redirect("/listings");
-})
-
-//delete lisitng
-app.delete("/listings/:_id", async(req, res) => {
-    const {_id} = req.params;
-    let deleted = await Listing.findByIdAndDelete(_id);
-
-    console.log(deleted);
-    res.redirect("/listings");
-})
-
-app.listen(PORT , () => {
+app.listen(PORT, () => {
     console.log(`server is listening to port ${PORT}`);
 })

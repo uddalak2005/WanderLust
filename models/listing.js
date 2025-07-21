@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
+const Reviews = require("./review.js");
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const default_link = process.env.DEFAULT_IMAGE;
 
 
-const lisitngModel = new mongoose.Schema({
+const listingModel = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -40,8 +41,21 @@ const lisitngModel = new mongoose.Schema({
     country: {
         type: String,
         required: true
+    },
+    reviews : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Reviews'
+        }
+    ]
+})
+
+listingModel.post("findOneAndDelete", async(listing) => {
+    if(listing && listing.reviews.length){
+        const result = await Reviews.deleteMany({ _id : { $in : listing.reviews}});
+        console.log(result);
     }
 })
 
-const Listing = mongoose.model("Listing", lisitngModel);
+const Listing = mongoose.model("Listing", listingModel);
 module.exports = Listing;
