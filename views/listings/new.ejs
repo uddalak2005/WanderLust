@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%- layout("layouts/biolerplate.ejs") %>
 
     <body>
@@ -46,4 +47,87 @@
                 
             </form>
         </div>
+=======
+<%- layout("layouts/boilerplate.ejs") %>
+
+    <body>
+
+        <div class="row mt-3">
+            <form method="POST" action="/listings" class="form col-8 offset-2 needs-validation" novalidate>
+                <legend>
+                    <h3>Create New Lisitng</h3>
+                </legend>
+                <div class="form-group mb-3 ">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="title" placeholder="Title" id="title" class="form-control" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a title.
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="desc" class="form-label">Description</label>
+                    <textarea name="description" id="desc" placeholder="Enter Description"
+                        class="form-control"></textarea>
+                    <div class="valid-feedback">
+                        Description is not mandatory
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="image" class="form-label">Image URL</label>
+                    <input type="text" name="image" placeholder="Image URL" id="img" class="form-control">
+                    <div class="valid-feedback">
+                        Image is not mandatory
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="form-group col-md-4 form-entry-price">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" name="price" placeholder="Price" id="price" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter price as a numerical value.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-8 form-entry-country">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="country" placeholder="Contact" id="country" class="form-control"
+                            required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a proper Country name.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="location" placeholder="Location" id="location" class="form-control"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a proper location.
+                    </div>
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <button type="submit" class="btn btn-add-new">
+                        Create
+                        <span style="padding-left : 1rem"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+>>>>>>> 77e3386f87c8c915268632f25d359b5c04845030
     </body>
