@@ -4,6 +4,7 @@ const Listing = require("../models/listing.js");
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const joi = require("joi");
+const authMiddleware = require("../middlewares/authMiddleware.js");
 
 //Index Route
 router.get("/", wrapAsync(
@@ -14,7 +15,9 @@ router.get("/", wrapAsync(
 ));
 
 //new listing form
-router.get("/new", wrapAsync(
+router.get("/new", 
+    authMiddleware, //protected by auth middleware
+    wrapAsync(
     (req, res) => {
         res.render("listings/new.ejs");
     }
@@ -62,7 +65,9 @@ router.post("/", wrapAsync(
 ))
 
 //Edit lisitng
-router.get("/:_id/edit", wrapAsync(
+router.get("/:_id/edit", 
+    authMiddleware,
+    wrapAsync(
     async (req, res) => {
         const { _id } = req.params;
         const item = await Listing.findById(_id);
@@ -123,7 +128,9 @@ router.put("/:_id/edit", wrapAsync(
 ))
 
 //delete lisitng
-router.delete("/:_id", wrapAsync(
+router.delete("/:_id", 
+    authMiddleware,
+    wrapAsync(
     async (req, res) => {
         const { _id } = req.params;
         let deleted = await Listing.findByIdAndDelete(_id);

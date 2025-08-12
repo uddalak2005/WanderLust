@@ -5,9 +5,12 @@ const Reviews = require("../models/review.js");
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const joi = require("joi");
+const authMiddleware = require("../middlewares/authMiddleware.js");
 
 //adding reviews route
-router.post("/", wrapAsync(
+router.post("/", 
+    authMiddleware,
+    wrapAsync(
     async (req, res) => {
         const { _id } = req.params;
 
@@ -19,6 +22,7 @@ router.post("/", wrapAsync(
         const { error, value } = schema.validate(req.body);
 
         if (error) {
+            
             throw new ExpressError(400, "Validation Error", error.details);
         }
 
@@ -45,7 +49,9 @@ router.post("/", wrapAsync(
 ));
 
 
-router.delete("/listing/:_id/reviews/:_revId", wrapAsync(
+router.delete("/listing/:_id/reviews/:_revId", 
+    authMiddleware,
+    wrapAsync(
     async (req, res) => {
         const { _id } = req.params;
         const { _revId } = req.params;

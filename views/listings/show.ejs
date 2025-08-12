@@ -1,35 +1,3 @@
-<<<<<<< HEAD
-<%- layout("layouts/biolerplate.ejs") %>
-
-    <body>
-        <div class="row mt-3">
-            <div class="col-8 offset-2">
-                <h3>Listing details : </h3>
-                <div class="card">
-
-                    <img src="<%= item.image.url %>" class="card-img-top show-img" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><b>
-                                <%= item.title %>
-                            </b></h5>
-                        <p class="card-text">
-                            <%= item.description %>
-                        </p>
-                        <p class="card-text"><b>Price - </b>₹<%= item.price.toLocaleString("en-in") %>
-                        </p>
-                        <p class="card-text"><b>Location - </b>
-                            <%= item.location %>, <%= item.country %>
-                        </p>
-
-                        <form method="POST" action="/listings/<%= item._id %>?_method=DELETE">
-                            <a href="/listings/<%= item._id %>/edit" class="card-link btn btn-edit">Edit</a>
-                            <button type="submit" class="card-link btn btn-delete">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-=======
 <%- layout("layouts/boilerplate.ejs") %>
     <style>
         .star-rating {
@@ -169,5 +137,4 @@
                 </div>
             </div>
         </div>
->>>>>>> 77e3386f87c8c915268632f25d359b5c04845030
     </body>

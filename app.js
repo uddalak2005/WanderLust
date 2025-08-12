@@ -13,6 +13,11 @@ const reviewsRouter = require("./routes/reviews.js");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("express-flash");
+const passport = require("passport");
+const localStrategy = require("passport-local");
+const User = require("./models/user.js");
+const authRouter = require("./routes/auth.js");
+
 
 app.engine("ejs", engine);
 
@@ -28,7 +33,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-dotenv.config(path.join(__dirname, ".env"));
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 app.use(cookieParser(process.env.SIGNED_COOKIE));
 
@@ -42,6 +47,15 @@ app.use(session({
         httpOnly: true
     }
 }));
+
+//Configuring passport js for authentication
+app.use(passport.session());
+
+passport.use(new localStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+
+passport.deserializeUser(User.deserializeUser());
 
 app.use(flash());
 
@@ -75,6 +89,9 @@ app.use("/listings", listingRouter);
 
 //Reviews router
 app.use("/listings/:_id/reviews", reviewsRouter);
+
+//Auth router
+app.use("/auth", authRouter);
 
 //Show Route
 app.get("/show/:_id", wrapAsync(
