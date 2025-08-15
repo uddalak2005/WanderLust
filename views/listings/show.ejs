@@ -64,77 +64,110 @@
                             <!-- Add new review form -->
                             <h6 class="mt-4"><b>Add Your Review</b></h6>
                             <!-- Star Rating -->
-                            <form action="/listings/<%= item._id %>/reviews" method="POST" class="needs-validation"
-                                novalidate>
-                                <div class="mb-3 form-group">
-                                    <label class="form-label d-block mb-1"><b>Rating:</b></label>
-                                    <div class="star-rating">
-                                        <input type="radio" id="star5" name="rating" value="5" />
-                                        <label for="star5" title="5 stars">&#9733;</label>
+                            <% if(currUser) {%>
+                                <form action="/listings/<%= item._id %>/reviews" method="POST" class="needs-validation"
+                                    novalidate>
+                                    <div class="mb-3 form-group">
+                                        <label class="form-label d-block mb-1"><b>Rating:</b></label>
+                                        <div class="star-rating">
+                                            <input type="radio" id="star5" name="rating" value="5" />
+                                            <label for="star5" title="5 stars">&#9733;</label>
 
-                                        <input type="radio" id="star4" name="rating" value="4" />
-                                        <label for="star4" title="4 stars">&#9733;</label>
+                                            <input type="radio" id="star4" name="rating" value="4" />
+                                            <label for="star4" title="4 stars">&#9733;</label>
 
-                                        <input type="radio" id="star3" name="rating" value="3" />
-                                        <label for="star3" title="3 stars">&#9733;</label>
+                                            <input type="radio" id="star3" name="rating" value="3" />
+                                            <label for="star3" title="3 stars">&#9733;</label>
 
-                                        <input type="radio" id="star2" name="rating" value="2" />
-                                        <label for="star2" title="2 stars">&#9733;</label>
+                                            <input type="radio" id="star2" name="rating" value="2" />
+                                            <label for="star2" title="2 stars">&#9733;</label>
 
-                                        <input type="radio" id="star1" name="rating" value="1" />
-                                        <label for="star1" title="1 star">&#9733;</label>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please select a rating.
-                                    </div>
-                                </div>
-
-                                <div class="form-floating mb-3">
-                                    <textarea class="form-control" placeholder="Leave a comment here" name="review"
-                                        id="floatingTextarea" style="height: 100px;" required></textarea>
-                                    <label for="floatingTextarea">Comments</label>
-                                    <div class="invalid-feedback">
-                                        Please enter a comment
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Submit Review</button>
-                            </form>
-
-                            <hr>
-
-                            <div>
-                                <% if (item.reviews && item.reviews.length) {%>
-                                    <% for (let review of item.reviews) { %>
-                                        <div class="card mb-3">
-                                            <div class="card-body">
-                                                <h6 class="card-title">Rating:
-                                                    <% for(let i=0; i < review.rating; i++) { %>
-                                                        <span class="text-warning">★</span>
-                                                        <% } %>
-                                                </h6>
-                                                <p class="card-text">
-                                                    <%= review.review %>
-                                                </p>
-                                                <small class="text-muted">Posted on <%=
-                                                        review.createdAt.toLocaleDateString() %></small>
-                                                <form action="/listing/<%= item._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-                                                    <button class="btn btn-sm btn-dark mt-1">Delete</button>
-                                                </form>
-
-                                            </div>
-
+                                            <input type="radio" id="star1" name="rating" value="1" />
+                                            <label for="star1" title="1 star">&#9733;</label>
                                         </div>
-                                        <% } %>
-                                            <% } else { %>
-                                                <p class="text-muted">No reviews yet. Be the first to leave a review!
-                                                </p>
-                                                <% } %>
-                            </div>
+                                        <div class="invalid-feedback">
+                                            Please select a rating.
+                                        </div>
+                                    </div>
 
+                                    <div class="form-floating mb-3">
+                                        <textarea class="form-control" placeholder="Leave a comment here" name="review"
+                                            id="floatingTextarea" style="height: 100px;" required></textarea>
+                                        <label for="floatingTextarea">Comments</label>
+                                        <div class="invalid-feedback">
+                                            Please enter a comment
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                                </form>
+
+                                <hr>
+                                <%}%>
+                                    <div>
+                                        <% if (item.reviews && item.reviews.length) {%>
+                                            <% for (let review of item.reviews) { %>
+                                                <div class="card mb-4">
+                                                    <div class="card-body">
+                                                        <!-- Header -->
+                                                        <div
+                                                            class="d-flex align-items-center justify-content-between mb-2">
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                                    style="width: 40px; height: 40px; font-weight: 600;">
+                                                                    <%= review.author.username[0].toUpperCase() %>
+                                                                </div>
+                                                                <h6 class="mb-0 fw-bold">
+                                                                    <%= review.author.username %>
+                                                                </h6>
+                                                            </div>
+                                                            <small class="text-muted">
+                                                                <%= review.createdAt.toLocaleDateString() %>
+                                                            </small>
+                                                        </div>
+
+                                                        <!-- Rating -->
+                                                        <div class="mb-2">
+                                                            <% for(let i=0; i < review.rating; i++) { %>
+                                                                <span class="text-warning fs-5">★</span>
+                                                                <% } %>
+                                                                    <% for(let i=review.rating; i < 5; i++) { %>
+                                                                        <span class="text-muted fs-5">★</span>
+                                                                        <% } %>
+                                                        </div>
+
+                                                        <!-- Review text -->
+                                                        <p class="card-text mb-3" style="line-height: 1.5;">
+                                                            <%= review.review %>
+                                                        </p>
+
+                                                        <!-- Actions -->
+                                                        <% if (currUser && currUser._id.equals(review.author._id)) { %>
+                                                            <form
+                                                                action="/listing/<%= item._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                                                method="POST">
+                                                                <button class="btn btn-sm btn-outline-danger px-3">
+                                                                    <i class="bi bi-trash"></i> Delete
+                                                                </button>
+                                                            </form>
+                                                            <% } %>
+
+                                                    </div>
+                                                </div>
+
+
+                                    </div>
+                                    <% } %>
+                                        <% } else { %>
+                                            <p class="text-muted">No reviews yet. Be the first to leave a
+                                                review!
+                                            </p>
+                                            <% } %>
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </body>

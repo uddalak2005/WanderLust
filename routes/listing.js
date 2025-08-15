@@ -4,7 +4,8 @@ const Listing = require("../models/listing.js");
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const joi = require("joi");
-const authMiddleware = require("../middlewares/authMiddleware.js");
+const { isLoggedIn, permissionForLisiting } = require("../middlewares/authMiddleware.js");
+
 
 //Index Route
 router.get("/", wrapAsync(
@@ -15,135 +16,143 @@ router.get("/", wrapAsync(
 ));
 
 //new listing form
-router.get("/new", 
-    authMiddleware, //protected by auth middleware
-    wrapAsync(
+router.get("/new",
+    isLoggedIn,
+    //protected by auth middleware
     (req, res) => {
-        res.render("listings/new.ejs");
+        return res.render("listings/new.ejs");
     }
-))
+)
 
 //add new lisitng
-router.post("/", wrapAsync(
-    async (req, res) => {
-        const schema = joi.object({
-            title: joi.string().required(),
-            description: joi.string(),
-            image: joi.string().allow('', null),
-            price: joi.number().required(),
-            country: joi.string().required(),
-            location: joi.string().required()
-        });
-
-        const { error, value } = schema.validate(req.body);
-        if (error) {
-            throw new ExpressError(400, "Field Mismatch", error.details);
-        }
-
-        const { title, description, image, price, country, location } = value;
-
-        try {
-            const newListing = new Listing({
-                title,
-                description,
-                image: {
-                    filename: "listing_image",
-                    url: image
-                },
-                price,
-                location,
-                country
+router.post("/",
+    isLoggedIn,
+    wrapAsync(
+        async (req, res) => {
+            const schema = joi.object({
+                title: joi.string().required(),
+                description: joi.string(),
+                image: joi.string().allow('', null),
+                price: joi.number().required(),
+                country: joi.string().required(),
+                location: joi.string().required()
             });
-            await newListing.save();
-            req.flash("success", "New Listing created Successfully!")
-            return res.redirect("/listings");
-        } catch (err) {
-            req.flash("error", "Failed to create a listing");
-            throw new ExpressError(400, err.message);
+
+            const { error, value } = schema.validate(req.body);
+            if (error) {
+                throw new ExpressError(400, "Field Mismatch", error.details);
+            }
+
+            const { title, description, image, price, country, location } = value;
+
+            try {
+                const newListing = new Listing({
+                    title,
+                    description,
+                    image: {
+                        filename: "listing_image",
+                        url: image
+                    },
+                    price,
+                    location,
+                    country,
+                    owner: req.user._id
+                });
+                await newListing.save();
+                req.flash("success", "New Listing created Successfully!")
+                return res.redirect("/listings");
+            } catch (err) {
+                req.flash("error", "Failed to create a listing");
+                throw new ExpressError(400, err.message);
+            }
         }
-    }
-))
+    ))
 
 //Edit lisitng
-router.get("/:_id/edit", 
-    authMiddleware,
+router.get("/:_id/edit",
+    isLoggedIn,
+    permissionForLisiting,
     wrapAsync(
-    async (req, res) => {
-        const { _id } = req.params;
-        const item = await Listing.findById(_id);
-        if (!item) {
-            req.flash("error", "No such item found");
-            return res.redirect("/listings");
+        async (req, res) => {
+            const { _id } = req.params;
+            const item = await Listing.findById(_id);
+            if (!item) {
+                req.flash("error", "No such item found");
+                return res.redirect("/listings");
+            }
+            res.render("listings/edit.ejs", { item: item });
         }
-        res.render("listings/edit.ejs", { item: item });
-    }
-))
+    ))
 
 
 //Update listing
-router.put("/:_id/edit", wrapAsync(
-    async (req, res) => {
-        try {
-            const { _id } = req.params;
-        } catch (err) {
-            throw new ExpressError(400, "id not parsed");
-        }
-
-        const schema = joi.object({
-            title: joi.string().required(),
-            description: joi.string(),
-            image: joi.string().allow('', null),
-            price: joi.number().required(),
-            country: joi.string().required(),
-            location: joi.string().required()
-        });
-
-        const { error, value } = schema.validate(req.body);
-
-        if (error) {
-            throw new ExpressError(400, "Field Mismatch", error.details);
-        }
-
-        try {
-            const lisitng = {
-                title: value.title,
-                description: value.description,
-                image: {
-                    filename: "filename",
-                    url: value.image
-                },
-                price: value.price,
-                location: value.location,
-                country: validateHeaderValue.country
-            };
-
-            await Listing.findByIdAndUpdate(_id, lisitng);
-
-        } catch (err) {
-            throw new ExpressError(400, err.message);
-        }
-
-        res.redirect("/listings");
-    }
-))
-
-//delete lisitng
-router.delete("/:_id", 
-    authMiddleware,
+router.put("/:_id/edit",
+    isLoggedIn,
+    permissionForLisiting,
     wrapAsync(
-    async (req, res) => {
-        const { _id } = req.params;
-        let deleted = await Listing.findByIdAndDelete(_id);
+        async (req, res) => {
+            try {
+                const { _id } = req.params;
+            } catch (err) {
+                throw new ExpressError(400, "id not parsed");
+            }
 
-        if(!deleted){
-            req.flash("error", "Listing not found");
+            const schema = joi.object({
+                title: joi.string().required(),
+                description: joi.string(),
+                image: joi.string().allow('', null),
+                price: joi.number().required(),
+                country: joi.string().required(),
+                location: joi.string().required()
+            });
+
+            const { error, value } = schema.validate(req.body);
+
+            if (error) {
+                throw new ExpressError(400, "Field Mismatch", error.details);
+            }
+
+            try {
+                const lisitng = {
+                    title: value.title,
+                    description: value.description,
+                    image: {
+                        filename: "filename",
+                        url: value.image
+                    },
+                    price: value.price,
+                    location: value.location,
+                    country: validateHeaderValue.country
+                };
+
+                await Listing.findByIdAndUpdate(_id, lisitng);
+
+            } catch (err) {
+                throw new ExpressError(400, err.message);
+            }
+
             res.redirect("/listings");
         }
+    ))
 
-        console.log(deleted);
-        req.flash("success", "Listing Deleted Successfully!")
-        res.redirect("/listings");
-    }
-))
+//delete lisitng
+router.delete("/:_id",
+    isLoggedIn,
+    permissionForLisiting,
+    wrapAsync(
+        async (req, res) => {
+            const { _id } = req.params;
+            let deleted = await Listing.findByIdAndDelete(_id);
+
+            if (!deleted) {
+                req.flash("error", "Listing not found");
+                res.redirect("/listings");
+            }
+
+            console.log(deleted);
+            req.flash("success", "Listing Deleted Successfully!")
+            res.redirect("/listings");
+        }
+    ))
 
 module.exports = router;

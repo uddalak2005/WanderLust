@@ -42,17 +42,22 @@ const listingModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    reviews : [
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
+    },
+    reviews: [
         {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'Reviews'
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Reviews'
         }
     ]
 })
 
-listingModel.post("findOneAndDelete", async(listing) => {
-    if(listing && listing.reviews.length){
-        const result = await Reviews.deleteMany({ _id : { $in : listing.reviews}});
+listingModel.post("findOneAndDelete", async (listing) => {
+    if (listing && listing.reviews.length) {
+        const result = await Reviews.deleteMany({ _id: { $in: listing.reviews } });
         console.log(result);
     }
 })

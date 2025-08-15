@@ -62,6 +62,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
     next();
 })
 
@@ -97,7 +98,12 @@ app.use("/auth", authRouter);
 app.get("/show/:_id", wrapAsync(
     async (req, res) => {
         const { _id } = req.params;
-        const item = await Listing.findById(_id).populate("reviews");
+        const item = await Listing.findById(_id).populate({
+            path: "reviews",
+            populate: {
+                path: "author"
+            }
+        });
         if (!item) {
             req.flash("error", "Listing not found");
             res.redirect("/listings");
