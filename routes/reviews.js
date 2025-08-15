@@ -49,7 +49,7 @@ router.post("/",
     ));
 
 
-router.delete("/listing/:_id/reviews/:_revId",
+router.delete("/:_revId",
     isLoggedIn,
     permissionForReviews,
     wrapAsync(
